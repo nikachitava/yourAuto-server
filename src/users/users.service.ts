@@ -12,6 +12,11 @@ export class UsersService {
         return this.userModel.find().exec();
     }
 
+   async findUser(email: string): Promise<User | undefined> {
+        return this.userModel.findOne({email})
+        
+   }
+
     async createUser(userData: User): Promise<User> {
         try {
             const newUser = new this.userModel(userData)

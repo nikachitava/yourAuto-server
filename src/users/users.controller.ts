@@ -14,6 +14,8 @@ export class UsersController {
         return this.usersService.findAll();
     }
 
+    
+
     @Post()
     async create(@Body() createUserDto: createUserDto): Promise<User> {
         return this.usersService.createUser(createUserDto);
