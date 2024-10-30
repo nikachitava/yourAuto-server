@@ -15,7 +15,7 @@ export class User {
     email: string;
 
     @Prop()
-    password: string;
+    password?: string;
 
     @Prop()
     phone: string;
