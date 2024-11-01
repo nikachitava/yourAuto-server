@@ -36,6 +36,9 @@ export class Vehicle {
 
     @Prop()
     gearBox: string;
+
+    @Prop()
+    image: string;
 }
 
 export const VehicleSchema = SchemaFactory.createForClass(Vehicle)

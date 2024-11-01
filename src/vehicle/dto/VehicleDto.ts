@@ -1,4 +1,4 @@
-import { IsMongoId, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 
 export class VehicleDto {
@@ -45,4 +45,8 @@ export class VehicleDto {
     @IsNotEmpty()
     @IsString()
     gearBox: string;
+
+    @IsOptional() // Optional, since it may not always be provided during creation
+    @IsString()
+    image?: string; // Optional field to store the image path or URL
 }

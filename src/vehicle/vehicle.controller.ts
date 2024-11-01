@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { VehicleService } from './vehicle.service';
 import { Vehicle } from './schema/vehicle.schema';
 import { VehicleDto } from './dto/VehicleDto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('vehicle')
 export class VehicleController {
@@ -19,7 +20,8 @@ export class VehicleController {
     }
 
     @Post()
-    async createVehicle(@Body() VehicleDto: VehicleDto): Promise<Vehicle> {
-        return this.vehicleService.createVehicle(VehicleDto);
+    @UseInterceptors(FileInterceptor('image')) 
+    async createVehicle(@UploadedFile() file:  Express.Multer.File, @Body() vehicleDto: VehicleDto): Promise<Vehicle> {
+        return this.vehicleService.createVehicle(vehicleDto, file); 
     }
 }
