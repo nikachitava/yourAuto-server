@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { User } from './user.schema';
+import { User } from './schema/user.schema';
 import {UsersService} from './users.service'
 import { createUserDto } from './dto/createUserDto';
-import { ObjectId } from 'mongoose';
 
 @Controller('users')
 export class UsersController {

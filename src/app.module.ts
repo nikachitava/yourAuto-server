@@ -5,11 +5,13 @@ import { InjectConnection, MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { Connection } from 'mongoose';
 import { AuthModule } from './auth/auth.module';
+import { VehicleController } from './vehicle/vehicle.controller';
+import { VehicleModule } from './vehicle/vehicle.module';
 
 @Module({
   imports: [MongooseModule.forRoot(
-    'mongodb+srv://chitava18official:qzeZAdaImhykCccJ@yourauto.9tufd.mongodb.net/yourAutoDB?retryWrites=true&w=majority&appName=yourAuto'), UsersModule, AuthModule],
-  controllers: [AppController],
+    'mongodb+srv://chitava18official:qzeZAdaImhykCccJ@yourauto.9tufd.mongodb.net/yourAutoDB?retryWrites=true&w=majority&appName=yourAuto'), UsersModule, AuthModule, VehicleModule],
+  controllers: [AppController, VehicleController],
   providers: [AppService],
 })
 
