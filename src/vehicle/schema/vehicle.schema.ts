@@ -8,6 +8,10 @@ export class Vehicle {
     owner: User;
 
     @Prop()
+    title: string;
+
+
+    @Prop()
     brand: string;
 
     @Prop()
@@ -36,6 +40,9 @@ export class Vehicle {
 
     @Prop()
     gearBox: string;
+
+    @Prop()
+    description: string;
 
     @Prop()
     image: string;

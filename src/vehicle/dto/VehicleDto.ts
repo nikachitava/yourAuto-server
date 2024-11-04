@@ -1,10 +1,14 @@
-import { IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 
 export class VehicleDto {
-    @IsMongoId()
     @IsNotEmpty()
+    @IsString()
     owner: string;
+
+    @IsNotEmpty()
+    @IsString()
+    title: string;
 
     @IsNotEmpty()
     @IsString()
@@ -35,18 +39,21 @@ export class VehicleDto {
     price: string;
 
     @IsNotEmpty()
-    @IsNumber()
-    mileage: number;
+    @IsString()
+    mileage: string;
 
     @IsNotEmpty()
-    @IsNumber()
-    engine: number;
+    @IsString()
+    engine: string;
 
     @IsNotEmpty()
     @IsString()
     gearBox: string;
 
-    @IsOptional() // Optional, since it may not always be provided during creation
+    @IsNotEmpty()
     @IsString()
+    description: string;
+
+    @IsOptional() // Optional, since it may not always be provided during creation
     image?: string; // Optional field to store the image path or URL
 }
