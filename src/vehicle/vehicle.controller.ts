@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { VehicleService } from './vehicle.service';
 import { Vehicle } from './schema/vehicle.schema';
 import { VehicleDto } from './dto/VehicleDto';
@@ -24,4 +24,18 @@ export class VehicleController {
     async createVehicle(@UploadedFile() file:  Express.Multer.File, @Body() vehicleDto: VehicleDto): Promise<Vehicle> {
         return this.vehicleService.createVehicle(vehicleDto, file); 
     }
+
+    @Delete(":id")
+    async deleteVehicle(@Param('id') vehicleID: string): Promise<any> {
+        return this.vehicleService.deleteVehicle(vehicleID)
+    }
+
+    @Patch(':id')
+    async updateVehicle(
+        @Param('id') id: string,
+        @Body() updateData: Partial<Vehicle>
+    ) {
+        return this.vehicleService.updateVehicle(id, updateData);
+    }
+
 }

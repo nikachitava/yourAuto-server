@@ -13,19 +13,19 @@ export class VehicleService {
     constructor(@InjectModel(Vehicle.name) private vehicleModel: Model<Vehicle>) {}
 
     async findAll(): Promise<any> {
-        return this.vehicleModel.find().exec();
+        return this.vehicleModel.find().populate("owner", "name surname phone").exec();
     }
 
     async findVehicleById(id: string): Promise<any> {
-        return this.vehicleModel.findById({_id: id});
+        return this.vehicleModel.findById({_id: id}).populate("owner", "name surname phone").exec();
     }
 
     async createVehicle(vehicleDto: VehicleDto, file: Express.Multer.File): Promise<Vehicle> {
-        let imagePath: string | undefined; // Declare imagePath as optional
+        let imagePath: string | undefined; 
         if (file) {
             const uploadPath = path.join(__dirname, '..', '..', 'uploads'); 
             if (!fs.existsSync(uploadPath)) {
-                fs.mkdirSync(uploadPath, { recursive: true }); // Create the upload directory
+                fs.mkdirSync(uploadPath, { recursive: true }); 
             }
     
             const uniqueFileName = `${uuidv4()}-${file.originalname}`;
@@ -38,8 +38,8 @@ export class VehicleService {
                 throw new BadRequestException('Failed to save image');
             }
         }
+
     
-        // Create a new vehicle instance
         const newVehicle = new this.vehicleModel({
             ...vehicleDto,
             owner: new Types.ObjectId(vehicleDto.owner),
@@ -48,6 +48,26 @@ export class VehicleService {
 
     
         return await newVehicle.save();
+    }
+
+    async deleteVehicle(id: string): Promise<any> {
+        return this.vehicleModel.deleteOne({_id: id})
+    }
+
+    async updateVehicle(id: string, updateData: Partial<Vehicle>): Promise<Vehicle> {
+        if (Object.keys(updateData).length === 0) {
+            throw new BadRequestException("No fields to update");
+        }
+
+        const updatedVehicle = await this.vehicleModel.findByIdAndUpdate(
+            new Types.ObjectId(id),
+            { $set: updateData },  
+            { new: true }           
+        ).exec();
+
+        if (!updatedVehicle) throw new BadRequestException("Vehicle not found");
+
+        return updatedVehicle;
     }
     
 
