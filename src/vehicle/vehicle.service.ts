@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Vehicle } from './schema/vehicle.schema';
 import { Model, Types } from 'mongoose';
@@ -69,7 +69,11 @@ export class VehicleService {
 
         return updatedVehicle;
     }
-    
+
+    async fetchUserVehicle(userID: string): Promise<any> {
+        const ownerObjectId = new Types.ObjectId(userID);
+        return this.vehicleModel.find({ 'owner': ownerObjectId }).exec();
+    }
 
 }
 

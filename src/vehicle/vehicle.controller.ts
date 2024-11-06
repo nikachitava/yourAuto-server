@@ -38,4 +38,11 @@ export class VehicleController {
         return this.vehicleService.updateVehicle(id, updateData);
     }
 
+
+    @Get('/owner/:id')
+    async fetchUserVehicle(@Param('id') userID: string): Promise<any> {
+        return this.vehicleService.fetchUserVehicle(userID)
+
+    }
+
 }
