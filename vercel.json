@@ -6,5 +6,5 @@
     "routes": [
       { "src": "/(.*)", "dest": "api/index.ts" }
     ],
-    "regions": ["us", "eu"]
+    "regions": ["sfo1"]
   }
