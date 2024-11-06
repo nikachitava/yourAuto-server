@@ -17,6 +17,10 @@ export class UsersService {
         
    }
 
+   async findUserByID(id: string):Promise<any> {
+        return this.userModel.findById({_id: id})
+   }
+
     async createUser(userData: User): Promise<User> {
         try {
             const newUser = new this.userModel(userData)

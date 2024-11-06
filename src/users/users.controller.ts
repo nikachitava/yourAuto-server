@@ -13,6 +13,10 @@ export class UsersController {
         return this.usersService.findAll();
     }
 
+    @Get(':id')
+    async findUserByID(@Param('id') userID: string): Promise<any> {
+        return this.usersService.findUserByID(userID)
+    }
     
 
     @Post()
