@@ -2,5 +2,5 @@
   "version": 2,
   
   "routes": [{ "src": "/(.*)", "dest": "src/main.ts" }],
-  "regions": ["sfo1"]
+  "regions": ["arn1"]
 }
