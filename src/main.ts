@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe())
   app.enableCors({
-    origin: "https://your-auto-client.vercel.app/",
+    origin: 'https://your-auto-client.vercel.app',
     methods: 'GET, POST, DELETE, PATCH',
     credentials: true
 
