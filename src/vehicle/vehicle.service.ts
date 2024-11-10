@@ -20,30 +20,42 @@ export class VehicleService {
         return this.vehicleModel.findById({_id: id}).populate("owner", "name surname phone").exec();
     }
 
-    async createVehicle(vehicleDto: VehicleDto, file: Express.Multer.File): Promise<Vehicle> {
-        let imagePath: string | undefined; 
-        if (file) {
-            const uploadPath = path.join(__dirname, '..', '..', 'uploads'); 
-            if (!fs.existsSync(uploadPath)) {
-                fs.mkdirSync(uploadPath, { recursive: true }); 
-            }
+    // async createVehicle(vehicleDto: VehicleDto, file: Express.Multer.File): Promise<Vehicle> {
+    //     let imagePath: string | undefined; 
+    //     if (file) {
+    //         const uploadPath = path.join(__dirname, '..', '..', 'uploads'); 
+    //         if (!fs.existsSync(uploadPath)) {
+    //             fs.mkdirSync(uploadPath, { recursive: true }); 
+    //         }
     
-            const uniqueFileName = `${uuidv4()}-${file.originalname}`;
-            imagePath = path.join(uploadPath, uniqueFileName); 
+    //         const uniqueFileName = `${uuidv4()}-${file.originalname}`;
+    //         imagePath = path.join(uploadPath, uniqueFileName); 
     
-            try {
-                fs.writeFileSync(imagePath, file.buffer);
-                imagePath = `/uploads/${uniqueFileName}`;
-            } catch (error) {
-                throw new BadRequestException('Failed to save image');
-            }
-        }
+    //         try {
+    //             fs.writeFileSync(imagePath, file.buffer);
+    //             imagePath = `/uploads/${uniqueFileName}`;
+    //         } catch (error) {
+    //             throw new BadRequestException('Failed to save image');
+    //         }
+    //     }
+
+    
+    //     const newVehicle = new this.vehicleModel({
+    //         ...vehicleDto,
+    //         owner: new Types.ObjectId(vehicleDto.owner),
+    //         image: imagePath ? imagePath : '', 
+    //     });
+
+    
+    //     return await newVehicle.save();
+    // }
+    async createVehicle(vehicleDto: VehicleDto): Promise<Vehicle> {
+        
 
     
         const newVehicle = new this.vehicleModel({
             ...vehicleDto,
             owner: new Types.ObjectId(vehicleDto.owner),
-            image: imagePath ? imagePath : '', 
         });
 
     

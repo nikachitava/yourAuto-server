@@ -33,10 +33,10 @@ export class Vehicle {
     price: string;
 
     @Prop()
-    mileage: number;
+    mileage: string;
 
     @Prop()
-    engine: number;
+    engine: string;
 
     @Prop()
     gearBox: string;

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 
 export class VehicleDto {
@@ -54,6 +54,7 @@ export class VehicleDto {
     @IsString()
     description: string;
 
-    @IsOptional() // Optional, since it may not always be provided during creation
-    image?: string; // Optional field to store the image path or URL
+    @IsNotEmpty()
+    @IsString()
+    image: string; 
 }
