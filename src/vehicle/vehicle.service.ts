@@ -52,7 +52,6 @@ export class VehicleService {
     async createVehicle(vehicleDto: VehicleDto): Promise<Vehicle> {
         
 
-    
         const newVehicle = new this.vehicleModel({
             ...vehicleDto,
             owner: new Types.ObjectId(vehicleDto.owner),
