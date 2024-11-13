@@ -56,5 +56,29 @@ export class VehicleDto {
 
     @IsNotEmpty()
     @IsString()
+    driveType: string;
+
+    @IsNotEmpty()
+    @IsString()
+    condition: string;
+
+    @IsNotEmpty()
+    @IsString()
+    door: string;
+
+    @IsNotEmpty()
+    @IsString()
+    cylinder: string;
+
+    @IsNotEmpty()
+    @IsString()
+    color: string;
+
+    @IsNotEmpty()
+    @IsString()
+    vin: string;
+
+    @IsNotEmpty()
+    @IsString()
     image: string; 
 }

@@ -45,7 +45,26 @@ export class Vehicle {
     description: string;
 
     @Prop()
+    driveType: string;
+
+    @Prop()
+    condition: string;
+
+    @Prop()
+    door: string;
+
+    @Prop()
+    cylinder: string;
+
+    @Prop()
+    color: string;
+
+    @Prop()
+    vin: string;
+
+    @Prop()
     image: string;
+
 }
 
 export const VehicleSchema = SchemaFactory.createForClass(Vehicle)
