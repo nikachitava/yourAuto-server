@@ -33,7 +33,7 @@ export class VehicleController {
     @Patch(':id')
     async updateVehicle(
         @Param('id') id: string,
-        @Body() updateData: Partial<Vehicle>
+        @Body() updateData: Partial<VehicleDto>
     ) {
         return this.vehicleService.updateVehicle(id, updateData);
     }

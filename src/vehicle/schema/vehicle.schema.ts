@@ -62,8 +62,8 @@ export class Vehicle {
     @Prop()
     vin: string;
 
-    @Prop()
-    image: string;
+    @Prop({ type: [String] }) 
+    image: string[];
 
 }
 

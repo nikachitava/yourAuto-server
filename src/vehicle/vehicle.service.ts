@@ -65,7 +65,7 @@ export class VehicleService {
         return this.vehicleModel.deleteOne({_id: id})
     }
 
-    async updateVehicle(id: string, updateData: Partial<Vehicle>): Promise<Vehicle> {
+    async updateVehicle(id: string, updateData: Partial<VehicleDto>): Promise<Vehicle> {
         if (Object.keys(updateData).length === 0) {
             throw new BadRequestException("No fields to update");
         }

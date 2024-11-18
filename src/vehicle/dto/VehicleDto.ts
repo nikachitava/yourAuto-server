@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsNotEmpty, IsObject, IsString } from "class-validator";
 
 
 export class VehicleDto {
@@ -78,7 +78,7 @@ export class VehicleDto {
     @IsString()
     vin: string;
 
-    @IsNotEmpty()
-    @IsString()
-    image: string; 
+    @IsArray()
+    @IsString({ each: true })
+    image: string[];
 }
