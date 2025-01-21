@@ -11,6 +11,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { KeepAliveModule } from './keep-alive/keep-alive.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -23,7 +24,12 @@ import { KeepAliveModule } from './keep-alive/keep-alive.module';
     KeepAliveModule,
     UsersModule,
     AuthModule,
-    VehicleModule
+    VehicleModule,
+    JwtModule.register({
+        global: true,
+        secret: 'testSecretKeya@', 
+        signOptions: { expiresIn: '24h' }, 
+      })
   ],
   controllers: [AppController, VehicleController],
   providers: [AppService],

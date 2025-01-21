@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { User } from './schema/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+    constructor(@InjectModel(User.name) private userModel: Model<User>, private jwtService: JwtService) {}
 
 
     async findAll(): Promise<User[]> {
@@ -21,10 +22,14 @@ export class UsersService {
         return this.userModel.findById({_id: id})
    }
 
-    async createUser(userData: User): Promise<User> {
+    async createUser(userData: User) {
         try {
             const newUser = new this.userModel(userData)
-            return newUser.save();
+            const {password, ...result} = newUser;
+            newUser.save();
+            const accessToken = this.jwtService.sign(result);
+
+            return accessToken;
         } catch(error) {
             console.log(error)
         }
