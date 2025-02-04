@@ -17,7 +17,7 @@ export class AuthController {
             maxAge: 3600000, 
         });
 
-        return res.send({ message: 'Signed in successfully', access_token });
+        return res.send({ message: 'Signed in successfuly', access_token });
     }
 
 
