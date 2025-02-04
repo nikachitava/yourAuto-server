@@ -14,7 +14,7 @@ export class AuthController {
         res.cookie('access_token', access_token, {
             httpOnly: true, 
             secure: true, 
-            maxAge: 3600000, //1hr
+            maxAge: 3600000, 
         });
 
         return res.send({ message: 'Signed in successfully', access_token });
