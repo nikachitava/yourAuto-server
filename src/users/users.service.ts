@@ -29,7 +29,9 @@ export class UsersService {
             newUser.save();
             const accessToken = this.jwtService.sign(result);
 
-            return accessToken;
+            return { 
+                access_token: accessToken,
+            };
         } catch(error) {
             console.log(error)
         }
