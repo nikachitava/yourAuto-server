@@ -10,7 +10,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.enableCors({
     // origin: 'https://your-auto-client.vercel.app',
-    origin: 'http://localhost:8081',
+    origin: 'http://localhost:5173',
     methods: 'GET, POST, DELETE, PATCH',
     credentials: true,
 
